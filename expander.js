@@ -5,14 +5,14 @@ function reverseParans(input) {
     const firstLeftParans = input.indexOf('(')
     const lastRightParans = input.lastIndexOf(')')
 
-    if (firstLeftParans == -1) {
+    if (firstLeftParans === -1) {
         if (lastRightParans > -1) {
             return ['<MALFORMED>']
         } else {
             return input.reverse()
         }
     } else {
-        if (lastRightParans == -1) {
+        if (lastRightParans === -1) {
             return ['<MALFORMED>']
         } else {
             let left = input.slice(0, firstLeftParans)
@@ -28,9 +28,9 @@ function process(str) {
     let firstLeftParans = input.indexOf('(');
     let lastRightParans = input.lastIndexOf(')');
 
-    if (firstLeftParans == -1 && lastRightParans == -1) {
+    if (firstLeftParans === -1 && lastRightParans === -1) {
         return input
-    } else if ((firstLeftParans > -1 && lastRightParans == -1) || (lastRightParans > -1 && firstLeftParans == -1)) {
+    } else if ((firstLeftParans > -1 && lastRightParans === -1) || (lastRightParans > -1 && firstLeftParans === -1)) {
         return "<MALFORMED>"
     }
     let result = input.slice(0, firstLeftParans).concat(reverseParans(input.slice(firstLeftParans + 1, lastRightParans)), input.slice(lastRightParans + 1))

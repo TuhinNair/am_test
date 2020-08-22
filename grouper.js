@@ -22,7 +22,7 @@ function process(input) {
             }
             return e
         }).filter(e => !e.grouped);
-        
+
         console.log(wordGroup);
     }
 
