@@ -33,7 +33,7 @@ function process(str) {
     } else if ((firstLeftParans > -1 && lastRightParans == -1) || (lastRightParans > -1 && firstLeftParans == -1)) {
         return "<MALFORMED>"
     }
-    result = input.slice(0, firstLeftParans).concat(reverseParans(input.slice(firstLeftParans + 1, lastRightParans)), input.slice(lastRightParans + 1))
+    let result = input.slice(0, firstLeftParans).concat(reverseParans(input.slice(firstLeftParans + 1, lastRightParans)), input.slice(lastRightParans + 1))
     return result.join('')
 }
 
@@ -41,7 +41,7 @@ function process(str) {
 
 function prettyPrint() {
     inputs.forEach((i, idx) => {
-        res = process(i)
+        let res = process(i)
         console.log(`Input: ${i}   Result: ${res}   Expected:  ${expected[idx]}  Pass: ${res === expected[idx]}`)
     })
 
