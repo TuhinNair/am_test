@@ -16,9 +16,6 @@ function reverseParans(input) {
             return ['<MALFORMED>']
         } else {
             to_reverse = input.slice(0, firstLeftParans).concat(reverseParans(input.slice(firstLeftParans+1, lastRightParans)));
-            if (input.slice(lastRightParans+1).length > 0) {
-                to_reverse.concat(input.slice(lastRightParans+1))
-            }
             return to_reverse.reverse();
         }
     }
