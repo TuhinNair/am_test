@@ -7,7 +7,7 @@ function process(input) {
             return {
                 original: i,
                 constituents: i.split('').sort(),
-                processed: false,
+                grouped: false,
             }
         });
 
@@ -18,10 +18,10 @@ function process(input) {
         processed_inputs = tail.map(e => {
             if (naiveArrayMatch(e.constituents, head.constituents)) {
                 wordGroup.push(e.original)
-                return { ...e, processed: true }
+                return { ...e, grouped: true }
             }
             return e
-        }).filter(e => !e.processed);
+        }).filter(e => !e.grouped);
         
         console.log(wordGroup);
     }
