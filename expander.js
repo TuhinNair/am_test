@@ -1,11 +1,11 @@
-const inputs = ["foo(bar)", "(bar)", "foo(bar)blim", "foo(foo(bar))blim"]
-const expected = ["foorab", "rab", "foorabblim", "foobaroofblim"]
+const inputs = ["foo(bar)", "(bar)", "foo(bar)blim", "foo(foo(bar))blim", "foo(foo(bar)d)blim"]
+const expected = ["foorab", "rab", "foorabblim", "foobaroofblim", "foodbaroofblim"]
 
 function reverseParans(input) {
     firstLeftParans = input.indexOf('(')
     lastRightParans = input.lastIndexOf(')')
 
-    if (firstLeftParans == -1 ) {
+    if (firstLeftParans == -1) {
         if (lastRightParans > -1) {
             return ['<MALFORMED>']
         } else {
@@ -15,7 +15,7 @@ function reverseParans(input) {
         if (lastRightParans == -1) {
             return ['<MALFORMED>']
         } else {
-            to_reverse = input.slice(0, firstLeftParans).concat(reverseParans(input.slice(firstLeftParans+1, lastRightParans)));
+            to_reverse = input.slice(0, firstLeftParans).concat(reverseParans(input.slice(firstLeftParans + 1, lastRightParans)), input.slice(lastRightParans).join('') == ')' ? [] : input.slice(lastRightParans));
             return to_reverse.reverse();
         }
     }
@@ -31,7 +31,7 @@ function process(str) {
     } else if ((firstLeftParans > -1 && lastRightParans == -1) || (lastRightParans > -1 && firstLeftParans == -1)) {
         return "<MALFORMED>"
     }
-    result = input.slice(0, firstLeftParans).concat(reverseParans(input.slice(firstLeftParans+1, lastRightParans)), input.slice(lastRightParans+1))
+    result = input.slice(0, firstLeftParans).concat(reverseParans(input.slice(firstLeftParans + 1, lastRightParans)), input.slice(lastRightParans + 1))
     return result.join('')
 }
 
