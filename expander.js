@@ -16,7 +16,7 @@ function reverseParans(input) {
             return ['<MALFORMED>']
         } else {
             let left = input.slice(0, firstLeftParans)
-            let right = input.slice(lastRightParans+1).slice()
+            let right = input.slice(lastRightParans+1)
             let middle = reverseParans(input.slice(firstLeftParans + 1, lastRightParans))
             return [...left, ...middle, ...right].reverse()
         }

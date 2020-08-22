@@ -15,35 +15,31 @@ function process(input) {
         let [head, ...tail] = processed_inputs;
         let wordGroup = [head.original];
 
-        processed_inputs = tail;
-
-        processed_inputs = processed_inputs.map(e => {
+        processed_inputs = tail.map(e => {
             if (naiveArrayMatch(e.constituents, head.constituents)) {
                 wordGroup.push(e.original)
                 return { ...e, processed: true }
             }
             return e
-        })
-
-        console.log(wordGroup)
-
-        processed_inputs = processed_inputs.filter(e => !e.processed)
+        }).filter(e => !e.processed);
+        
+        console.log(wordGroup);
     }
 
 }
 
 function naiveArrayMatch(arr1, arr2) {
     if (arr1.length !== arr2.length) {
-        return false
+        return false;
     };
 
     arr1.forEach((e, i) => {
         if (e !== arr2[i]) {
-            return false
+            return false;
         }
     });
 
-    return true
+    return true;
 }
 
 process(input);
